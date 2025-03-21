@@ -8,11 +8,13 @@ int main() {
     int delay_time = 3;
     int countdown = delay_time;
 
+	printf("Timer running!\n");
+	
     // Countdown loop
     for (int i = 0; i < delay_time; i++) {
-        printf("%d ", countdown);
-        fflush(stdout);  // Ensure immediate output
-        sleep(1);
+       	//printf("%d ", countdown);
+       	//fflush(stdout);  // Ensure immediate output
+       	sleep(1);
         countdown--; // Decrease after  printing
 
         // Move the check after countdown reaches 0
