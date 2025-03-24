@@ -1,34 +1,62 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <unistd.h>
 
-int main() {
-	system("clear");
-    printf("Please wait!\n");
-    int delay_time = 3;
-    int countdown = delay_time;
 
-	printf("Timer running!\n");
-	
-    // Countdown loop
-    for (int i = 0; i < delay_time; i++) {
-       	//printf("%d ", countdown);
-       	//fflush(stdout);  // Ensure immediate output
-       	sleep(1);
-        countdown--; // Decrease after  printing
+// Set timer
+void set_timer(){
+	int time_in_seconds;
+	bool getting_time = true;
 
-        // Move the check after countdown reaches 0
-        if (countdown == 0) {
-            printf("\nTimes up!\n");
-            system("mpg123 alarm.mp3 "); // play music
-            break;
-        }
-    }
+	// Act as switch
+	while(getting_time){
+		printf("Input seconds: ");
 
-	sleep(1); // Wait a second
+		// Invalid data type
+		if(scanf("%d", &time_in_seconds) != 1 || time_in_seconds <= 0){
+			printf("Invalid data type!\n");
+			printf("\n");
+			while(getchar() != '\n'); // Clear till new line is read
+			continue;
+		}
+
+		while(getchar() != '\n'); // Clear buffer
+		printf("Time taken %d seconds\n", time_in_seconds);
+		getting_time = false;
+		
+	}
+
 	printf("\n");
-	printf("Output delayed by %d seconds.\n", delay_time);
-	sleep(5);
-	system("clear");
-    return 0;
+	printf("Timer started!\n");
+	printf("++++++++++++++\n");
+
+	int temp_time = time_in_seconds;
+
+	// Start timer
+	for(int i = 0; i < time_in_seconds; i++){
+		printf("Time left: %d\n", temp_time);
+		fflush(stdout); // Immediate feedback
+		temp_time--;
+		sleep(1);
+
+		// Ring ring! Time's up
+		if(temp_time == 0){
+			printf("\n");
+			printf("Time's up!\n");
+
+			
+		}
+		
+	}
+
+	
+
+}
+
+// Entry point
+int main(){
+	set_timer();
+	return 0;
 }
