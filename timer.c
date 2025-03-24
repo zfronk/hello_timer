@@ -39,12 +39,32 @@ void set_timer(){
 		printf("Time left: %d\n", temp_time);
 		fflush(stdout); // Immediate feedback
 		temp_time--;
-		sleep(1);
+		sleep(1); // simulate a second
 
-		// Ring ring! Time's up
+		// Ding dong! Time's up
 		if(temp_time == 0){
 			printf("\n");
 			printf("Time's up!\n");
+
+			printf("\n");
+
+			// Check if package is installed
+			if(system("which mpg123 > /dev/null 2>&1") == 0){ // return zero if present
+				printf("Package to play sound available!\n");
+				printf("\n");
+
+				system("mpg123 run_baby_run.mp3"); // Play sound
+
+				printf("Music terminated!\n");
+				break;
+				
+			}
+
+			// Ask user to download the package
+			else{
+				printf("Package to play audio unavailable! Please sudo install mpg123, and try again!\n");
+				break;
+			}
 
 			
 		}
