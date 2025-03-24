@@ -1,54 +1,55 @@
-# ⚡ Countdown Timer with Alarm
+# Terminal Clock System
 
-## 🛠️ Overview
-This is a simple C program that runs a countdown timer and plays an alarm when the time is up. The terminal is cleared before and after execution for a clean display.
+## Description
+This is a simple terminal-based clock system written in C. It allows users to display the current time, set a countdown timer, and receive an audio alert when the timer expires. The application runs in a loop, letting users choose actions from a menu.
 
-## 🔥 Features
-- Countdown timer (default: 3 seconds, adjustable).
-- Plays an alarm sound when time is up.
-- Clears the terminal before and after execution.
+## Features
+- **Display Current Time**: Shows the real-time clock in a formatted manner (HH:MM:SS AM/PM) and updates it every second.
+- **Set Countdown Timer**: Users can input a duration in seconds, and the program will count down until it reaches zero.
+- **Audio Notification**: If `mpg123` is installed, an audio alert is played when the timer expires.
+- **User-Friendly Interface**: Provides a clear menu-driven interface for ease of use.
 
-## 🖥️ System Requirements
-- Linux-based system (or WSL on Windows).
-- `mpg123` installed for playing the alarm sound.
-- `alarm.mp3` file in the same directory as the program.
+## Requirements
+- Linux-based system
+- GCC compiler for building the program
+- `mpg123` package (optional, for playing sound alerts)
 
-## 🚀 Setup & Installation
-1. Install `mpg123` if not already installed:
+## Installation
+1. Clone the repository or copy the source code.
    ```sh
-   sudo apt install mpg123  # Debian/Ubuntu
-   sudo dnf install mpg123  # Fedora
-   sudo pacman -S mpg123    # Arch
+   git clone <repository-url>
+   cd terminal-clock-system
+   ```
+2. Compile the program using GCC:
+   ```sh
+   gcc -o run.exe timer.c -Wall
+   ```
+3. Run the program:
+   ```sh
+   ./run.exe
    ```
 
-2. Compile the program:
-   ```sh
-   gcc timer.c -o run.exe
-   ```
+## Usage
+1. Upon running, you are greeted with a menu:
+   - Press `1` to display the current time.
+   - Press `2` to set a countdown timer.
+   - Press `3` to exit the application.
+2. If selecting the timer option, input the number of seconds for the countdown.
+3. If `mpg123` is installed, an alarm sound will play when the timer reaches zero.
 
-## ⚡ Running the Timer
-1. Ensure `alarm.mp3` is in the same directory.
-2. Run the program:
-   ```sh
-   ./run.exe  # On Linux
-   run.exe    # On Windows (if compiled with MinGW)
-   ```
-3. The program will count down and play the alarm.
+## Dependencies
+- Standard C libraries (`stdio.h`, `stdlib.h`, `string.h`, `stdbool.h`, `unistd.h`, `time.h`)
+- `mpg123` (optional, for playing alarm sound)
 
-## 🎛️ Customization
-- Change the countdown duration by modifying:
-  ```c
-  int delay_time = 3; // Adjust seconds
-  ```
-- Modify the alarm playback method if needed:
-  ```c
-  system("mpg123 alarm.mp3");
-  ```
+## Notes
+- The application ensures user-friendly input handling and validates data types.
+- If `mpg123` is not installed, the user is prompted to install it for sound playback.
 
-## ⚠️ Notes
-- The terminal is cleared at the start and end of the program.
-- If `mpg123` isn’t installed or `alarm.mp3` is missing, the alarm won’t play.
+## Future Enhancements
+- Add support for customizing alarm sounds.
+- Implement a stopwatch feature.
+- Improve UI with ANSI escape codes for better visuals.
 
-## 🎖️ License
-This project is open-source and free to use.
+## License
+This project is licensed under the MIT License.
 
