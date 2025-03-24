@@ -150,7 +150,7 @@ void control_dashboard(){
 
 		if(read_input == enter){
 			printf("You pressed enter!\n");
-			printf("\n");
+			//printf("\n");
 			continue;
 			
 		}
