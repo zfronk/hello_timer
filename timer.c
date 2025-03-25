@@ -127,12 +127,60 @@ void set_timer(){
 
 }
 
+
+void initiate_stopwatch(){
+	printf("Stopwatch\n");
+	printf(".........\n");
+	printf("Enter <start> to start stopwatch || <exit> to exit stopwatch session!\n");
+	printf("Enter command: ");
+
+	char command[50]; // Buffer to store command
+	fgets(command, sizeof(command), stdin); // Get input
+
+	command[strcspn(command, "\n")] = 0; // Remove newline take
+
+	if(strcasecmp(command, "start") == 0){
+		printf("Timer running!\n");
+		printf("\n");
+
+		time_t start = time(NULL); // initiate time in unreadable format
+
+		printf("Enter command <stop> to stop the stopwatch: ");
+		char timer_command[50];
+		fgets(timer_command, sizeof(command), stdin);
+
+		if(strcasecmp(timer_command, "stop")){
+			printf("Timer stopped!\n");
+			time_t end = time(NULL); // End time in uneradble format
+
+			//printf("\n");
+			int elapsed_time = end - start;
+			printf("Time elapsed %d seconds\n", elapsed_time);
+			
+			
+		}
+		
+		
+	}
+
+	else if(strcasecmp(command, "exit") == 0){
+		printf("Exited stopwatch session!\n");
+		
+	}
+
+	else{
+		printf("Invalid input!\n");
+	}
+	
+}
+
 // Control Dashboard
 void control_dashboard(){
 	printf("+++++++++++++++++++++++\n");
 	printf("1. Display current time\n");
 	printf("2. Set alarm\n");
-	printf("3. Exit application\n");
+	printf("3. Initiate stopwatch\n");
+	printf("4. Exit application\n");
 	printf("+++++++++++++++++++++++\n");
 	
 
@@ -178,6 +226,12 @@ void control_dashboard(){
 		}
 
 		else if(choice == 3){
+			getchar();
+			printf("\n");
+			initiate_stopwatch();
+		}
+
+		else if(choice == 4){
 			getchar();
 			printf("See you soon!\n");
 			break;
