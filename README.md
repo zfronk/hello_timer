@@ -70,5 +70,5 @@ Once launched, the program displays a menu with options:
 This project is open-source and available for modification and distribution under the MIT License.
 
 ---
-Developed by **[Your Name]**
+Developed by **zfronk**
 
