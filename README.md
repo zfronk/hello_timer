@@ -1,55 +1,74 @@
-# Terminal Clock System
+# Terminal Clock System++
 
 ## Description
-This is a simple terminal-based clock system written in C. It allows users to display the current time, set a countdown timer, and receive an audio alert when the timer expires. The application runs in a loop, letting users choose actions from a menu.
+The **Terminal Clock System++** is a C-based console application that provides various time-related functionalities, including:
+- Displaying the current time
+- Setting a countdown timer with an alarm
+- Running a stopwatch
+
+This application runs in the terminal and requires a Linux-based system with `mpg123` installed to play alarm sounds.
 
 ## Features
-- **Display Current Time**: Shows the real-time clock in a formatted manner (HH:MM:SS AM/PM) and updates it every second.
-- **Set Countdown Timer**: Users can input a duration in seconds, and the program will count down until it reaches zero.
-- **Audio Notification**: If `mpg123` is installed, an audio alert is played when the timer expires.
-- **User-Friendly Interface**: Provides a clear menu-driven interface for ease of use.
+1. **Display Current Time**: Shows the current local time in a formatted manner.
+2. **Set Alarm (Countdown Timer)**: Allows users to input a duration (in seconds) and counts down to zero, optionally playing an alarm sound if `mpg123` is installed.
+3. **Stopwatch**: Lets users start and stop a stopwatch to measure elapsed time.
+4. **User-Friendly Control Dashboard**: Provides an interactive menu to navigate between different features.
 
-## Requirements
-- Linux-based system
-- GCC compiler for building the program
-- `mpg123` package (optional, for playing sound alerts)
+## Installation & Requirements
+### Prerequisites
+- A Linux-based system
+- `gcc` compiler to compile the program
+- (Optional) `mpg123` for playing alarm sounds
 
-## Installation
-1. Clone the repository or copy the source code.
-   ```sh
-   git clone <repository-url>
-   cd terminal-clock-system
-   ```
-2. Compile the program using GCC:
-   ```sh
-   gcc -o run.exe timer.c -Wall
-   ```
-3. Run the program:
-   ```sh
-   ./run.exe
-   ```
+### Installing `mpg123`
+To enable sound playback when the timer ends, install `mpg123` by running:
+```sh
+sudo apt install mpg123
+```
+
+## Compilation
+To compile the program, use:
+```sh
+gcc terminal.c -o run.exe -Wall
+```
+
+## Running the Program
+After compilation, run the program using:
+```sh
+./run.exe
+```
 
 ## Usage
-1. Upon running, you are greeted with a menu:
-   - Press `1` to display the current time.
-   - Press `2` to set a countdown timer.
-   - Press `3` to exit the application.
-2. If selecting the timer option, input the number of seconds for the countdown.
-3. If `mpg123` is installed, an alarm sound will play when the timer reaches zero.
+Once launched, the program displays a menu with options:
+1. Display the current time
+2. Set an alarm
+3. Initiate a stopwatch
+4. Exit the application
 
-## Dependencies
-- Standard C libraries (`stdio.h`, `stdlib.h`, `string.h`, `stdbool.h`, `unistd.h`, `time.h`)
-- `mpg123` (optional, for playing alarm sound)
+### Setting a Timer
+- Enter the time in seconds when prompted.
+- The timer counts down until it reaches 0.
+- If `mpg123` is installed, it will play an alarm sound.
 
-## Notes
-- The application ensures user-friendly input handling and validates data types.
-- If `mpg123` is not installed, the user is prompted to install it for sound playback.
+### Stopwatch Usage
+- Type `start` to begin timing.
+- Type `stop` to stop and display the elapsed time.
+- Type `exit` to leave the stopwatch session.
 
-## Future Enhancements
-- Add support for customizing alarm sounds.
-- Implement a stopwatch feature.
-- Improve UI with ANSI escape codes for better visuals.
+## Troubleshooting
+### Timer Sound Not Playing?
+- Ensure `mpg123` is installed (`which mpg123` should return a path).
+- Check if the `run_baby_run.mp3` file exists in the same directory as the executable.
+- If missing, replace it with another `.mp3` file and update the filename in the `set_timer()` function.
+
+## Future Improvements
+- Add support for custom alarm sounds.
+- Implement a graphical interface.
+- Add stopwatch lap functionality.
 
 ## License
-This project is licensed under the MIT License.
+This project is open-source and available for modification and distribution under the MIT License.
+
+---
+Developed by **[Your Name]**
 
