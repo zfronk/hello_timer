@@ -74,7 +74,7 @@ void set_timer(){
 		
 
 		while(getchar() != '\n'); // Clear buffer
-		printf("Duration %d seconds.\n", time_in_seconds);
+		printf("Duration %d seconds!\n", time_in_seconds);
 		getting_time = false;
 		
 	}
@@ -87,13 +87,14 @@ void set_timer(){
 
 	// Start timer
 	for(int i = 0; i < time_in_seconds; i++){
-		printf("\rTime left: %d", temp_time);
+		printf("\rTime left: %02d  ", temp_time);
 		fflush(stdout); // Immediate feedback
 		temp_time--;
 		sleep(1); // simulate a second
 
 		// Ding dong! Time's up
 		if(temp_time == 0){
+			printf("\rTime left: %02d  ", temp_time);
 			printf("\n");
 			printf("Time's up!\n");
 
@@ -106,6 +107,7 @@ void set_timer(){
 
 				system("mpg123 run_baby_run.mp3"); // Play sound
 
+				// On finish
 				printf("Music terminated!\n");
 				printf("Feel free to time yourself again!\n");
 				break;
@@ -132,50 +134,65 @@ void initiate_stopwatch(){
 	printf("Stopwatch\n");
 	printf(".........\n");
 	printf("Enter <start> to start stopwatch || <exit> to exit stopwatch session!\n");
-	printf("Enter command: ");
 
-	char command[50]; // Buffer to store command
-	fgets(command, sizeof(command), stdin); // Get input
+	while(true){
+		
+		printf("Enter command: ");
 
-	command[strcspn(command, "\n")] = 0; // Remove newline take
+		char command[50]; // Buffer to store command
+		fgets(command, sizeof(command), stdin); // Get input
 
-	if(strcasecmp(command, "start") == 0){
-		printf("Timer running!\n");
-		printf("\n");
+		command[strcspn(command, "\n")] = 0; // Remove newline taken
 
-		time_t start = time(NULL); // initiate time in unreadable format
+		if(strcasecmp(command, "start") == 0){
+			printf("Timer running!\n");
+			printf("\n");
 
-		printf("Enter command <stop> to stop the stopwatch: ");
-		char timer_command[50];
-		fgets(timer_command, sizeof(command), stdin);
+			time_t start = time(NULL); // initiate time in unreadable format
 
-		if(strcasecmp(timer_command, "stop")){
-			printf("Timer stopped!\n");
-			time_t end = time(NULL); // End time in uneradble format
+			printf("Enter command <stop> to stop the stopwatch: ");
+			char timer_command[50];
+			fgets(timer_command, sizeof(command), stdin);
 
-			//printf("\n");
-			int elapsed_time = end - start;
-			printf("Time elapsed %d seconds\n", elapsed_time);
+			if(strcasecmp(timer_command, "stop")){
+				printf("Timer stopped!\n");
+				time_t end = time(NULL); // End time in uneradble format
+
+				//printf("\n");
+				int elapsed_time = end - start;
+				printf("Time elapsed %d seconds\n", elapsed_time);
+				break;
 			
 			
+			}
+		
+		
+		}
+
+		// If exit
+		else if(strcasecmp(command, "exit") == 0){
+			printf("Exited stopwatch session!\n");
+			break;
+		
+		}
+
+		// Invalid input
+		else{
+			printf("Invalid input!\n");
+			printf("\n");
+			command[strcspn(command,"\n")] = 0; // Remove new line from the buffer
+			continue;
 		}
 		
 		
 	}
 
-	else if(strcasecmp(command, "exit") == 0){
-		printf("Exited stopwatch session!\n");
-		
-	}
-
-	else{
-		printf("Invalid input!\n");
-	}
 	
 }
 
 // Control Dashboard
 void control_dashboard(){
+	printf("TERMINAL CLOCK SYSTEM++\n");
 	printf("+++++++++++++++++++++++\n");
 	printf("1. Display current time\n");
 	printf("2. Set alarm\n");
@@ -233,7 +250,8 @@ void control_dashboard(){
 
 		else if(choice == 4){
 			getchar();
-			printf("See you soon!\n");
+			printf("Have a nice time🖥️  buddy.  \n");
+			printf("\n");
 			break;
 		}
 
@@ -248,7 +266,7 @@ void control_dashboard(){
 
 
 void welcome_user(){
-	printf("Hello there welcome to your terminal clock system!\n");
+	printf("Welcome user!\n");
 	printf("\n");
 
 	control_dashboard(); // Display dashboard
