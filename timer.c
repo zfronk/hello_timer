@@ -165,7 +165,7 @@ void set_timer(){
 	}
 
 		printf("\n");
-		printf(".........................\n");
+		printf("..............\n");
 		printf("Timer set: %02d:%02d:%02d\n", hours, minutes,seconds);
 
 		int total_seconds = (seconds + (minutes * 60) + (hours * 3600));
