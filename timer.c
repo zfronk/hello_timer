@@ -27,7 +27,7 @@ void display_time(){
 
 		// Read for three seconds
 		if(count == 3){
-			printf("\n");
+			printf("\n\n");
 			break;
 			
 		}
@@ -229,67 +229,13 @@ void set_timer(){
 
 }
 
-
-
 void initiate_stopwatch(){
-	printf("Stopwatch\n");
-	printf(".........\n");
-	printf("Enter <start> to start stopwatch || <exit> to exit stopwatch session!\n");
-
-	while(true){
-		
-		printf("Enter command: ");
-
-		char command[50]; // Buffer to store command
-		fgets(command, sizeof(command), stdin); // Get input
-
-		command[strcspn(command, "\n")] = 0; // Remove newline taken
-
-		if(strcasecmp(command, "start") == 0){
-			printf("Timer running!\n");
-			printf("\n");
-
-			time_t start = time(NULL); // initiate time in unreadable format
-
-			printf("Enter command <stop> to stop the stopwatch: ");
-			char timer_command[50];
-			fgets(timer_command, sizeof(command), stdin);
-
-			if(strcasecmp(timer_command, "stop") == 0){
-				printf("Timer stopped!\n");
-				time_t end = time(NULL); // End time in uneradble format
-
-				//printf("\n");
-				int elapsed_time = end - start;
-				printf("Time elapsed %d seconds\n", elapsed_time);
-				break;
-			
-			
-			}
-		
-		
-		}
-
-		// If exit
-		else if(strcasecmp(command, "exit") == 0){
-			printf("Exited stopwatch session!\n");
-			break;
-		
-		}
-
-		// Invalid input
-		else{
-			printf("Invalid input!\n");
-			printf("\n");
-			command[strcspn(command,"\n")] = 0; // Remove new line from the buffer
-			continue;
-		}
-		
-		
-	}
-
-	
+	printf("Still under development!\n");
+	printf("\n");
 }
+
+
+
 
 // Control Dashboard
 void control_dashboard(){
@@ -386,7 +332,7 @@ void welcome_user(){
 
 // Entry point
 int main(){
-	welcome_user();;
+	welcome_user();
 
 	return 0;
 }
