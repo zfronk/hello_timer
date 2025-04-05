@@ -15,12 +15,23 @@ void display_time(){
 	
 	while(reading_time){
 		time_t now = time(NULL); // Get system time in unreadable format
-		struct tm *time_info = localtime(&now); // Local time structure
+		char *stringfied_now = ctime(&now); // using ctime
+
+		if(stringfied_now == NULL){
+			printf("Error reading time/n");
+			reading_time = false;
 			
-		char current_time[50];
-		strftime(current_time, sizeof(current_time), "%I:%M:%S %p", time_info); // Format readable format to buffer
+		}
+
+		// Remove new line character
+		int time_length = strlen(stringfied_now);
+
+		if(stringfied_now[time_length - 1] == '\n'){
+			stringfied_now[time_length - 1] = '\0';
 			
-		printf("\rIt's %s", current_time);
+		}
+				
+		printf("\rIt's %s", stringfied_now);
 		fflush(stdout); // Force output
 		count++;
 		sleep(1);
@@ -230,8 +241,29 @@ void set_timer(){
 }
 
 void initiate_stopwatch(){
-	printf("Still under development!\n");
+	time_t now = time(NULL); // initiate time in unreadable format
+
+	printf("Timer started...\n");
+	printf("Input <stop> to stop timer\n");
 	printf("\n");
+
+	printf("Input: ");
+	char buffer[20]; // Buffer to store input
+	fgets(buffer, sizeof(buffer), stdin); // Assign to buffer
+
+	// Remove new line character
+	size_t new_line_index = strcspn(buffer, "\n");
+	buffer[new_line_index] = '\0';
+	
+	if(strcasecmp(buffer, "stop") == 0){
+		time_t then = time(NULL); // Current time
+		int elapsed_time = then - now; // Difference in time
+		
+		printf("Elapsed time: %d\n", elapsed_time);
+		printf("\n");
+		
+	}
+	
 }
 
 
