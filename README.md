@@ -1,112 +1,91 @@
 # Terminal Clock System++
 
-## Overview
-Terminal Clock System++ is a simple command-line utility that provides three main functionalities:
-1. **Display Current Time** - Shows the real-time system clock for a few seconds.
-2. **Set a Timer** - Allows the user to set a countdown timer with an optional alarm.
-3. **Stopwatch** - A stopwatch that can be started and stopped manually.
-
-This program is written in **C** and runs in a terminal environment.
-
----
+A simple terminal-based utility providing basic clock functionalities for Linux.
 
 ## Features
-- **Real-time clock display**
-- **Configurable countdown timer** with a sound notification (requires `mpg123` for audio playback)
-- **Stopwatch functionality**
-- **Simple and interactive menu-driven interface**
-- **Error handling for user input validation**
 
----
+* **Display Current Time:** Shows the current system time, updating every second for a brief period.
+* **Set Timer:** Allows you to configure a countdown timer by inputting hours, minutes, and seconds. The timer displays the remaining time and plays a sound (if `mpg123` is installed) upon completion.
+* **Initiate Stopwatch:** Starts a simple stopwatch. Enter `<stop>` to record the elapsed time.
+* **Control Dashboard:** A menu-driven interface to access all the features.
 
-## Prerequisites
-- **Operating System:** Linux (Tested on Linux Mint)
-- **Compiler:** GCC
-- **Audio Package:** `mpg123` (Optional, required for alarm sound playback)
+## Getting Started
 
-To install `mpg123` on Debian-based systems:
-```sh
-sudo apt install mpg123
-```
+### Prerequisites
 
----
+* A C compiler (like GCC), typically available on most Linux distributions.
+* (Optional for sound) `mpg123` - a command-line MPEG audio player. You can install it using your distribution's package manager:
+    * **Debian/Ubuntu:**
+      ```bash
+      sudo apt-get update
+      sudo apt-get install mpg123
+      ```
+    * **Fedora/CentOS/RHEL:**
+      ```bash
+      sudo dnf install mpg123
+      # or
+      sudo yum install mpg123
+      ```
+    * **Arch Linux:**
+      ```bash
+      sudo pacman -S mpg123
+      ```
 
-## Installation & Compilation
-1. Clone the repository or copy the source code.
-2. Open a terminal and navigate to the source directory.
-3. Compile the program using GCC:
-   ```sh
-   gcc -o terminal_clock terminal_clock.c -Wall
-   ```
-4. Run the compiled executable:
-   ```sh
-   ./terminal_clock
-   ```
+### Compilation
 
----
+1.  Save the provided C code as `timer.c`.
+2.  Open your terminal.
+3.  Navigate to the directory where you saved `timer.c`.
+4.  Compile the code using GCC:
+    ```bash
+    gcc timer.c -o run.exe
+    ```
+
+### Running the Application
+
+1.  In the same terminal, execute the compiled program:
+    ```bash
+    ./run.exe
+    ```
+2.  The "TERMINAL CLOCK SYSTEM++" dashboard will appear. Choose an option by entering the corresponding number and pressing Enter.
 
 ## Usage
-Once the program is launched, follow the on-screen menu options:
 
-1. **Display Current Time:**
-   - Shows the real-time system clock for 3 seconds.
-2. **Set Timer:**
-   - Enter hours, minutes, and seconds.
-   - The countdown will be displayed in HH:MM:SS format.
-   - If `mpg123` is installed, an alarm sound will play when the timer reaches zero.
-3. **Stopwatch:**
-   - Start the stopwatch by entering `start`.
-   - Stop it by entering `stop` to see the elapsed time.
-4. **Exit:**
-   - Close the program.
+### Display Current Time (Option 1)
 
----
+* Select `1` from the dashboard.
+* The current time will be displayed, updating every second for three seconds.
 
-## Example Run
-```
-TERMINAL CLOCK SYSTEM++
------------------------
-1. Display current time
-2. Set alarm
-3. Initiate stopwatch
-4. Exit application
------------------------
-Choose an option from the dashboard: 2
+### Set Timer (Option 2)
 
-Configuring timer
-.................
-Input number of hours: 0
-Hours recorded!
+* Select `2` from the dashboard.
+* Follow the prompts to input the desired hours, minutes, and seconds for the timer.
+* The timer will count down, showing the remaining time.
+* Upon completion:
+    * If `mpg123` is installed, it will attempt to play `run_baby_run.mp3` (ensure this file is in the same directory as `run.exe`).
+    * If `mpg123` is not found, a message will suggest installing it.
 
-Input number of minutes: 0
-Minutes recorded!
+### Initiate Stopwatch (Option 3)
 
-Input number of seconds: 5
-Seconds recorded!
+* Select `3` from the dashboard.
+* The stopwatch will start.
+* Type `stop` (case-insensitive) and press Enter to stop it.
+* The elapsed time in seconds will be displayed.
 
-Timer set: 00:00:05
-5 total seconds recorded!
+### Exit Application (Option 4)
 
-Timer started!
-..............
-Time left: 00:00:05
-Time left: 00:00:04
-Time left: 00:00:03
-Time left: 00:00:02
-Time left: 00:00:01
-Time left: 00:00:00
-Time's up!
-```
+* Select `4` to quit the application.
 
----
+## Notes
 
-## Future Enhancements
-- Add a pause/resume feature for the timer and stopwatch.
-- Implement a more interactive UI with ncurses.
-- Improve audio playback by supporting additional formats.
+* The sound functionality relies on the `mpg123` package being installed on your Linux system. Also, make sure `run_baby_run.mp3` is in the same directory as the executable.
+* Input validation is in place to handle incorrect input types and out-of-range time values.
+* The stopwatch provides elapsed time in whole seconds.
 
----
+## Contributing
+
+Contributions are welcome! Please submit pull requests or suggest improvements.
 
 ## License
-This project is open-source and free to use.
 
+This project is open-source and available under a permissive license (e.g., MIT License). See the `LICENSE` file for details.
